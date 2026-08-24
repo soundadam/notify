@@ -1,5 +1,13 @@
 # notify
 
+**实验性、已冻结。** [njuwatch](https://github.com/soundadam/nju-seat-watch) 第一期只需本机告警，**不依赖**本仓库。把外人放进 Keycloak、再用 `soundadam-scli` JWT 走 Resend，不是下一期方向；经 scli 的身份接入因此搁置。
+
+HTTP 服务代码仍保留（契约见下），只是不要把它当成 njuwatch 的必选路径。本仓库不轮询学校站点，也不做验证码。
+
+以后若要做邮件通道：先验证邮箱再签发令牌即可，不必经过 Keycloak。当前不实现。
+
+---
+
 集群内薄 HTTP 服务：校验 **soundadam-scli** 的 Keycloak access token，用 Resend 发信到 JWT `email`。不轮询学校站点，不保存学校凭据，不接受请求体里的收件人。
 
 对外路径（由 Envoy `/notify` 前缀改写）：
